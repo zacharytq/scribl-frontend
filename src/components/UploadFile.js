@@ -12,18 +12,24 @@ class UploadFile extends Component {
     this.setState({ selectedPhoto: event.target.files[0]});
   };
 
-  onPhotoUpload = () => {
+  onPhotoUpload = event => {
+    event.preventDefault();
     const formData = new FormData();
 
     formData.append(
-      'myFile',
+      'image',
       this.state.selectedPhoto,
       this.state.selectedPhoto.name
     );
 
-    console.log(formData);
+    console.log( JSON.stringify(...formData.entries()));
     let clone = { ...this.state };
     this.setState({ showPhoto: clone.selectedPhoto });
+    fetch('http://127.0.0.1:3000/scribls', {
+      method: 'POST',  
+      body: formData
+      })
+      .then(resp =>{ return resp.json()})
   }
 
   photo = () => {
@@ -36,8 +42,10 @@ class UploadFile extends Component {
     } else {
       return (
         <div>
-          <input type='file' onChange={this.onPhotoSelect} />
-          <button onClick={this.onPhotoUpload}>Upload</button>
+          <form onSubmit={this.onPhotoUpload}>
+            <input type='file' onChange={this.onPhotoSelect} />
+            <input type='submit' name='Upload' />
+          </form>
         </div>
       )
     }
