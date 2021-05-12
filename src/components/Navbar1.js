@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
-import { AppBar, Toolbar, IconButton, Drawer, makeStyles, MenuList, MenuItem, ListItemText } from '@material-ui/core';
+import { AppBar, Toolbar, IconButton, Drawer, makeStyles } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import Routes from '../Routes'
-import { NavLink, withRouter } from 'react-router-dom';
+import DrawerList from './DrawerList';
 
 const useStyles = makeStyles(() => ({
   drawer: {
@@ -16,19 +15,16 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const Navbar = (props) => {
+const Navbar = () => {
   const classes = useStyles();
   const [ isOpen, setIsOpen ] = useState(false);
   const toggleIsOpen = () => setIsOpen(!isOpen)
 
-  const activeRoute = (route) => {
-    return route === props.location.pathname ? true : false;
-  }
 
   return (
     <div>
       <div>
-        <AppBar >
+        <AppBar position='sticky'>
           <Toolbar>
             <IconButton edge='start' onClick={toggleIsOpen}>
               <MenuIcon />
@@ -42,21 +38,11 @@ const Navbar = (props) => {
           role='presentation'
           onClick={toggleIsOpen}
         >
-          <MenuList>
-            {Routes.map((route, key) => {
-              return (
-                <NavLink to={route.path} key={key}>
-                  <MenuItem selected={activeRoute(route.path)}>
-                    <ListItemText primary={route.sidebarName} />
-                  </MenuItem>
-                </NavLink>
-              ) 
-            })}
-          </MenuList>
+          <DrawerList />
         </div>
       </Drawer>
     </div>
   )
 }
 
-export default withRouter(Navbar);
+export default Navbar;

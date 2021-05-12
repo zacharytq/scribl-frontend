@@ -1,22 +1,6 @@
-import React from 'react';
-
-const Home = () => {
-  return (
-    <h1>Home</h1>
-  )
-}
-
-const NewScribl = () => {
-  return (
-    <h1>New Scribl</h1>
-  )
-}
-
-const Scribls = () => {
-  return (
-    <h1>My Scribls</h1>
-  )
-}
+import Home from './components/Home';
+import NewScribl from './components/NewScribl';
+import Scribls from './components/Scribls';
 
 const Routes = [
   {
