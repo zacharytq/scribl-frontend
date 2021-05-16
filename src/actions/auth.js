@@ -42,7 +42,7 @@ export const signupUser = (credentials) => {
 
 export const loginUser = (credentials) => {
   return (dispatch) => {
-    return fetch("http://localhost:3001/login", {
+    return fetch("http://localhost:3000/login", {
       method: "POST",
       headers: {
         Accept: "application/json",

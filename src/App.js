@@ -2,7 +2,7 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar1";
 import Signup from "./components/Signup";
-// import Login from "./components/Login";
+import Login from "./components/Login";
 import Home from "./components/Home";
 // import NewScribl from './components/NewScribl';
 // import Scribls from './components/Scribls';
@@ -21,6 +21,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={Home} /> 
           <Route exact path='/signup' component={Signup} />
+          <Route exact path='/login' component={Login} />
         </Switch>
         </div>
       </Router>
